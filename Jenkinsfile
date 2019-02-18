@@ -1,9 +1,7 @@
 pipeline { 
-    parameters {
-        string description: 'S3 Bucket for terraform states', name: 's3_bucket'
-        string description: 'AWS region', name: 'aws_region'
-        string description: 'Environment test, staging, prod', name: 'environment'
-    } 
+        parameters {
+        string(name: 'RELEASE_VERSION', defaultValue: '1.0.0', description: 'Application git release tag version')
+    }
     agent none
     stages {
         stage ('Configure AWS auth') {
