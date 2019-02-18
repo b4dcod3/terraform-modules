@@ -1,10 +1,10 @@
 pipeline {  
     agent none
-    parameters {([
-        string(description: 'S3 Bucket for terraform states', name: 's3_bucket'),
-        string(description: 'AWS region', name: 'aws_region'),
-        string(description: 'Environment test, staging, prod', name: 'environment')
-    ])}
+    parameters {
+        string(description: 'S3 Bucket for terraform states', name: 's3_bucket');
+        string(description: 'AWS region', name: 'aws_region');
+        string(description: 'Environment test, staging, prod', name: 'environment');
+    }
     stages {
         stage ('Configure AWS auth') {
             agent { node 'slave1' }
