@@ -1,9 +1,9 @@
 #!groovy
 pipeline {
     parameters{
-        string(defaultValue: '', description: 'test', name: 's3_bucket')
-        string(defaultValue: '', description: 'test', name: 'environment')
-        string(defaultValue: '', description: 'test', name: 'aws_region')
+        string(defaultValue: '', description: 'AWS S3 bucket for remote statefiles', name: 's3_bucket')
+        string(defaultValue: '', description: 'Test, Prod, Stage etc', name: 'environment')
+        string(defaultValue: '', description: 'AWS region', name: 'aws_region')
     } 
     agent none
     stages {
