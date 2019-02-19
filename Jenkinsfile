@@ -9,27 +9,28 @@ pipeline {
     stages {
         stage ('Configure AWS auth') {
             agent { node 'slave1' }
-                steps {
-                    awsAUTH()
-                }
+            steps {
+                awsAUTH()
+            }
         }
         stage ('Terraform Init') {
             agent { node 'slave1' }
-                steps {
-                    tfInit "${s3_bucket}","${environment}","${aws_region}"
-                }
+            steps {
+                tfInit "${s3_bucket}","${environment}","${aws_region}"
+            }
         }
         stage ('Terraform Plan') {
             agent { node 'slave1' }
-                steps {
-                    tfPlan "${environment}"
-                }
+            when {tf_plan}
+            steps {
+                tfPlan "${environment}"
+            }
         }
         stage ('Terraform Apply') {
             agent { node 'slave1' }
-                steps {
-                    tfApply()
-                }
+            steps {
+                tfApply()
+            }
         }
     }
 }  
