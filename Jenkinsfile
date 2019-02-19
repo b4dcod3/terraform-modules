@@ -28,7 +28,7 @@ pipeline {
         }
         stage ('Terraform Apply') {
             agent { node 'slave1' }
-            when {tf_plan 'false'}
+            when {tf_plan equals 'false'}
             steps {
                 tfApply()
             }
