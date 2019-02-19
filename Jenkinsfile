@@ -1,8 +1,8 @@
 #!groovy
-
-String s3_bucket
-
-pipeline { 
+pipeline {
+    parameters{
+        [string(defaultValue: '', description: 'test', name: 's3_bucket')]
+    } 
     agent none
     stages {
         stage ('Configure AWS auth') {
