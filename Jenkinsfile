@@ -4,6 +4,7 @@ pipeline {
         string(defaultValue: '', description: 'AWS S3 bucket for remote statefiles', name: 's3_bucket')
         string(defaultValue: '', description: 'Test, Prod, Stage etc', name: 'environment')
         string(defaultValue: '', description: 'AWS region', name: 'aws_region')
+        booleanParam(defaultValue: false, description: 'Run Terraform plan?', name: 'tf_plan')
     } 
     agent none
     stages {
@@ -21,13 +22,13 @@ pipeline {
         }
         stage ('Terraform Plan') {
             agent { node 'slave1' }
-            when {tf_plan}
             steps {
                 tfPlan "${environment}"
             }
         }
         stage ('Terraform Apply') {
             agent { node 'slave1' }
+            when {tf_plan='false'}
             steps {
                 tfApply()
             }
