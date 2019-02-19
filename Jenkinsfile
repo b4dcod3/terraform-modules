@@ -22,7 +22,7 @@ pipeline {
         stage ('Terraform Plan') {
             agent { node 'slave1' }
                 steps {
-                    tfPlan()
+                    tfPlan "${environment}"
                 }
         }
         stage ('Terraform Apply') {
