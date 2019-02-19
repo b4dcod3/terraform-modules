@@ -16,7 +16,7 @@ pipeline {
         stage ('Terraform Init') {
             agent { node 'slave1' }
                 steps {
-                    tfInit 'test' 'test' 'test'
+                    tfInit "${s3_bucket}","${environment}","${aws_region}"
                 }
         }
         stage ('Terraform Plan') {
