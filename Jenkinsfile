@@ -1,5 +1,8 @@
+#!groovy
+
+String s3_bucket
+
 pipeline { 
-    parameters{[string(defaultValue: '', description: 'S3 Bucket for terraform statefiles', name: 's3_bucket', trim: false)]}
     agent none
     stages {
         stage ('Configure AWS auth') {
