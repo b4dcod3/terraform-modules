@@ -36,7 +36,7 @@ pipeline {
                 tfApply()
             }
         }
-        stage ('Terraform Apply') {
+        stage ('Terraform Destroy') {
             agent { node 'slave1' }
             when {
                 environment name: 'tf_destroy', value: 'true' 
