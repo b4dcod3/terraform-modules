@@ -1,7 +1,9 @@
 #!groovy
 pipeline {
     parameters{
-        string(defaultValue: '', description: 'test', name: 's3_bucket')
+        string(defaultValue: '', description: 'test', name: 's3_bucket'),
+        string(defaultValue: '', description: 'test', name: 'environment'),
+        string(defaultValue: '', description: 'test', name: 'aws_region')
     } 
     agent none
     stages {
