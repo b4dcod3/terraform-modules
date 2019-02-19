@@ -5,6 +5,7 @@ pipeline {
         string(defaultValue: '', description: 'Test, Prod, Stage etc', name: 'environment')
         string(defaultValue: '', description: 'AWS region', name: 'aws_region')
         booleanParam(defaultValue: false, description: 'Run Terraform plan?', name: 'tf_plan')
+        booleanParam(defaultValue: false, description: 'Run Terraform destroy?', name: 'tf_destroy')
     } 
     agent none
     stages {
@@ -28,9 +29,20 @@ pipeline {
         }
         stage ('Terraform Apply') {
             agent { node 'slave1' }
-            when {tf_plan equals 'false'}
+            when {
+                environment name: 'tf_plan', value: 'false' 
+            }
             steps {
                 tfApply()
+            }
+        }
+        stage ('Terraform Apply') {
+            agent { node 'slave1' }
+            when {
+                environment name: 'tf_destroy', value: 'true' 
+            }
+            steps {
+                tfDestroy()
             }
         }
     }
