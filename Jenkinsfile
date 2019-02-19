@@ -1,6 +1,6 @@
 pipeline { 
     agent none
-    parameters{[
+    parameters {[
         string(name: 'RELEASE_VERSION', defaultValue: '1.0.0', description: 'Application git release tag version')
     ]}
     stages {
